@@ -11,6 +11,7 @@ class FloodSimulation extends Simulation {
   val longPauseMax = 15
   val numberUsers = Integer.getInteger("users", 1)
   val myRamp = java.lang.Long.getLong("ramp", 0L)
+  val testDuration = Integer.getInteger("duration", 0)
 
   val httpProtocol = http
     .baseUrl("https://" + domain)
@@ -38,5 +39,5 @@ class FloodSimulation extends Simulation {
     .pause(longPauseMin, longPauseMax)
     .exec(Steps.postStep5)
 
-  setUp(user_scenario.inject(rampUsers(numberUsers).during(myRamp))).protocols(httpProtocol)
+  setUp(user_scenario.inject(rampUsers(numberUsers).during(myRamp))).protocols(httpProtocol).maxDuration(testDuration)
 }
