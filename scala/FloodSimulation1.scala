@@ -1,10 +1,9 @@
-package database
-
 import io.gatling.core.Predef.Simulation
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
+import requests.RequestsFlood._
 
-class FloodSimulation extends Simulation {
+class FloodSimulation1 extends Simulation {
 
   val domain = "challengers.flood.io"
   val longPauseMin = 10
