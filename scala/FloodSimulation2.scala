@@ -8,7 +8,7 @@ class FloodSimulation2 extends Simulation {
   val longPauseMax = 15
   val numberUsers = Integer.getInteger("users", 1)
   val myRamp = java.lang.Long.getLong("ramp", 0L)
-  val testDuration = Integer.getInteger("duration", 140)
+  val testDuration = Integer.getInteger("duration", 120)
   val authenticityTokenRegex = """name="authenticity_token" type="hidden" value="(.+?)""""
   val stepIdRegex = """name="challenger\[step_id\]" type="hidden" value="(.+?)""""
   val orderSelectedRegex = """<input class="radio_buttons optional".+? value="(.+?)" />"""
