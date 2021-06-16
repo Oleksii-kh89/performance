@@ -9,9 +9,12 @@ class FloodSimulation extends Simulation {
   val longPauseMin = 10
   val longPauseMax = 15
   
-  val numberUsers = Integer.getInteger("users", 1)
-  val myRamp = java.lang.Long.getLong("ramp", 0L)
-  val testDuration = Integer.getInteger("duration", 120)
+  val numberUsersString = System.getProperty("users")
+  val numberUserNum = Integer.parseInt(numberUsersString)
+  val myRampString = System.getProperty("ramp")
+  val myRamp = java.lang.Long.getLong(myRampString)
+  val testDuartionString = System.getProperty("duration")
+  val testDuration = Integer.parseInt(testDuartionString)
   
   val authenticityTokenRegex = """name="authenticity_token" type="hidden" value="(.+?)""""
   val stepIdRegex = """name="challenger\[step_id\]" type="hidden" value="(.+?)""""
