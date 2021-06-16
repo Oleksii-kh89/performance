@@ -10,6 +10,7 @@ class FloodSimulation extends Simulation {
   val numberUserNum = System.getProperty("users").toInt
   val myRamp = System.getProperty("ramp").toInt
   val testDuration = System.getProperty("duration").toInt
+  val testName = System.getProperty("name")
 
   val httpProtocol = http
     .baseUrl("https://" + domain)
@@ -17,7 +18,7 @@ class FloodSimulation extends Simulation {
     .userAgentHeader("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36")
     .disableFollowRedirect
 
-  val user_scenario = scenario("Test")
+  val user_scenario = scenario(testName)
     .during(testDuration){
       exec(
         HomePage.loadHomePage
