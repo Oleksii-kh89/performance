@@ -1,16 +1,16 @@
-package database.requests
-
 object RequestsFlood {
 
+  val domain = "challengers.flood.io"
   val authenticityTokenRegex = """name="authenticity_token" type="hidden" value="(.+?)""""
   val stepIdRegex = """name="challenger\[step_id\]" type="hidden" value="(.+?)""""
   val orderSelectedRegex = """<input class="radio_buttons optional".+? value="(.+?)" />"""
-  val orderRegex = """<input id="challenger_order_[0-9]+" name="(.+?)" type="hidden" value="[0-9]+" />"""
+  val orderRegex = """<input class="radio_buttons optional".+? value="(.+?)" />"""
+  val order_Regex = """<input id="challenger_order_[0-9]+" name="(.+?)" type="hidden" value="[0-9]+" />"""
   val orderValueRegex = """<input id="challenger_order_[0-9]+" name=".+?" type="hidden" value="([0-9]+)" />"""
   val orderValueLargestRegex = """(<span class="radio"><input class="radio_buttons optional".+? value=".+?" .+?>[0-9]+</label></span>)"""
   val ageRegex = """id="challenger_age" name="challenger\[age\]"""
 
-  object HomePage{
+  object HomePage {
     def loadHomePage = {
       exec(http("Open Home Page")
         .get("/"))
@@ -68,7 +68,7 @@ object RequestsFlood {
       exec(http("Get, step 4")
         .get("/step/4")
         .check(regex(stepIdRegex).find.saveAs("challengerStepID"))
-        .check(regex(orderRegex).findAll.saveAs("challengerOrderValue"))
+        .check(regex(order_Regex).findAll.saveAs("challengerOrderValue"))
         .check(regex(orderValueRegex).findAll.saveAs("challengerOrderNumber"))
       )
         .exec(session => {
@@ -79,6 +79,7 @@ object RequestsFlood {
           session.set("challengerOrderSeq", challengerOrderSeq)
         })
     }
+
     def postStep4 = {
       exec(http("Post step 4, Wait")
         .post("/start")
@@ -97,6 +98,7 @@ object RequestsFlood {
         .get("/code")
         .check(jsonPath("$.code").saveAs("oneTimeToken")))
     }
+
     def postStep5 = {
       exec(http("Post step 5, choose token")
         .post("/start")
