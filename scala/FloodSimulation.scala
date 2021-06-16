@@ -153,6 +153,7 @@ class FloodSimulation extends Simulation {
     .pause(longPauseMin, longPauseMax)
     .exec(Steps.postStep5)
 
-  setUp(user_scenario.inject(rampUsers(numberUsers).during(myRamp))).protocols(httpProtocol).maxDuration(testDuration)
+  setUp(user_scenario.inject(rampUsers(numberUserNum).during(myRamp.seconds))).protocols(httpProtocol)
+  //setUp(user_scenario.inject(rampUsers(numberUsers).during(myRamp))).protocols(httpProtocol).maxDuration(testDuration)
 }
 
