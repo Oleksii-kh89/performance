@@ -1,14 +1,15 @@
 
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
+import requests.RequestsFlood._
 
 
 class FloodSimulation extends Simulation {
   val longPauseMin = 10
   val longPauseMax = 15
-  val numberUserNum = Integer.parseInt(System.getProperty("users"))
-  val myRamp = Integer.parseInt(System.getProperty("ramp"))
-  val testDuration = Integer.parseInt(System.getProperty("duration"))
+  val numberUserNum = System.getProperty("users").toInt
+  val myRamp = System.getProperty("ramp").toInt
+  val testDuration = System.getProperty("duration").toInt
 
   val httpProtocol = http
     .baseUrl("https://" + domain)
