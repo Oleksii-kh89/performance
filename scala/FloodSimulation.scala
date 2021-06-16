@@ -4,7 +4,7 @@ import io.gatling.http.Predef._
 import requests.RequestsFlood._
 
 
-class FloodSimulation extends Simulation {
+class testName extends Simulation {
   val longPauseMin = 10
   val longPauseMax = 15
   val numberUserNum = System.getProperty("users").toInt
@@ -18,7 +18,7 @@ class FloodSimulation extends Simulation {
     .userAgentHeader("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36")
     .disableFollowRedirect
 
-  val user_scenario = scenario(testName)
+  val user_scenario = scenario("testName")
     .during(testDuration){
       exec(
         HomePage.loadHomePage
